@@ -32,7 +32,7 @@ from typing import Optional
 
 from genai_perf import utils
 from genai_perf.inputs.input_constants import ImageFormat
-from PIL import Image
+from PIL import Image, ImageDraw
 
 
 class SyntheticImageGenerator:
@@ -59,11 +59,19 @@ class SyntheticImageGenerator:
             image_height_mean, image_height_stddev
         )
 
-        image = cls._sample_source_image()
-        image = image.resize(size=(width, height))
+        prompt = cls._generate_random_text()
+        image = Image.new('RGB', (width, height), 'white')
+        draw = ImageDraw.Draw(image)
+        draw.multiline_text((10, 10), prompt, fill='black')
 
         img_base64 = utils.encode_image(image, image_format.name)
         return f"data:image/{image_format.name.lower()};base64,{img_base64}"
+
+    @staticmethod
+    def _generate_random_text(cls):
+        chars = string.ascii_letters + string.digits + string.punctuation
+        random_string = '\n'.join([''.join(random.choices(chars, k=200)) for _ in range(100)])
+        return random_string
 
     @classmethod
     def _sample_source_image(cls):
