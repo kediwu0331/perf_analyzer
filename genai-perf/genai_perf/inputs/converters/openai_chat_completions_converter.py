@@ -124,6 +124,10 @@ class OpenAIChatCompletionsConverter(BaseConverter):
         max_tokens = self._get_max_tokens(optional_data)
         if max_tokens != OutputTokenDefaults.MEAN:
             payload["max_tokens"] = max_tokens
+        if 'tool' in self.config.input.extra:
+            payload['tools'] = [{'type': 'function', 'function': {'name': self.config.input.extra['tool']}}]
         if self.config.input.extra:
             for key, value in self.config.input.extra.items():
+                if key == 'tool':
+                    continue
                 payload[key] = value
