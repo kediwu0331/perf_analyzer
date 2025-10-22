@@ -33,6 +33,9 @@ from genai_perf import utils
 from genai_perf.inputs.input_constants import ImageFormat
 from PIL import Image, ImageDraw
 
+import random
+import string
+
 
 class SyntheticImageGenerator:
     """A simple synthetic image generator that generates multiple synthetic
