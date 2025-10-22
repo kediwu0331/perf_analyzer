@@ -21,8 +21,7 @@
 # PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
 # PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
 # OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import glob
 import random
@@ -67,7 +66,7 @@ class SyntheticImageGenerator:
         img_base64 = utils.encode_image(image, image_format.name)
         return f"data:image/{image_format.name.lower()};base64,{img_base64}"
 
-    @staticmethod
+    @classmethod
     def _generate_random_text(cls):
         chars = string.ascii_letters + string.digits + string.punctuation
         random_string = '\n'.join([''.join(random.choices(chars, k=200)) for _ in range(100)])
