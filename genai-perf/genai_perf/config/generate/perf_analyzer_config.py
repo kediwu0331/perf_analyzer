@@ -263,10 +263,11 @@ class PerfAnalyzerConfig:
 
             mode = config.perf_analyzer.measurement.mode
             if mode == PerfAnalyzerMeasurementMode.REQUEST_COUNT:
-                perf_analyzer_args += [
-                    "--request-count",
-                    f"{self._calculate_request_count(config)}",
-                ]
+                pass
+                # perf_analyzer_args += [
+                #     "--request-count",
+                #     f"{self._calculate_request_count(config)}",
+                # ]
             elif mode == PerfAnalyzerMeasurementMode.INTERVAL:
                 perf_analyzer_args += [
                     f"--measurement-interval",
